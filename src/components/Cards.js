@@ -5,9 +5,13 @@ import Cardsdata from './CardsData'
 import "./style.css";
 import { useDispatch } from 'react-redux';
 import { ADD } from '../redux/actions/action';
+import { ToastContainer, toast } from 'react-toastify';
+
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const Cards = () => {
-
+  const Cart = () => toast("Added to Cart!");
   const [data, setData] = useState(Cardsdata);
   // console.log(data);
 
@@ -18,6 +22,9 @@ const Cards = () => {
   const send = (e)=>{
     // console.log(e);
     dispatch(ADD(e));
+    toast.success(`Added to Cart!`, {
+      position: toast.POSITION.TOP_CENTER
+    });
   }
 
   return (
@@ -39,7 +46,9 @@ const Cards = () => {
                     <div className="button_div d-flex justify-content-center">
                     <Button variant="primary"  
                       onClick={()=> send(element)}
+                     
                      className='col-lg-12'>Add to Cart</Button>
+                     <ToastContainer />
                     </div>
                   
                   </Card.Body>
